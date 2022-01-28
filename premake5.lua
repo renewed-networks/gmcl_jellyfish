@@ -9,5 +9,5 @@ CreateWorkspace { name = "rnlib" }
 		IncludeSDKCommon()
 		IncludeDetouring()
 
-		includedirs "third-party/discord-rpc"
-		files {"source/*.cpp", "source/*.hpp"}
+		includedirs  "third-party/"
+		files {"source/*.cpp", "source/*.hpp", "third-party/**.*"}
