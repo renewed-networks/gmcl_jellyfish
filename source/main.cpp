@@ -20,12 +20,19 @@ LUA_FUNCTION_STATIC(exist)
 	return 1;
 }
 
-/*
-LUA_FUNCTION_STATIC(fs_read)
+LUA_FUNCTION_STATIC(write)
 {
 	LUA->CheckString(1);
+	LUA->CheckString(2);
 	const char* path = LUA->GetString(1);
+	const char* content = LUA->GetString(2);
 	std::string externalPath = std::string("jellyfish/") + path;
+	std::string externalContent = content;
+
+	std::ofstream ofs( externalPath );
+    	ofs << externalContent;
+    ofs.close();
+
 	if (std::filesystem::exists( externalPath ))
 		LUA->PushNumber(1);
 	else
@@ -33,7 +40,6 @@ LUA_FUNCTION_STATIC(fs_read)
 
 	return 1;
 }
-*/
 
 GMOD_MODULE_OPEN()
 {
