@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include "std.hpp"
 GarrysMod::Lua::ILuaInterface* JellyFish::ILuaServer;
 
 std::vector<std::string> split(const std::string& str, const std::string& delim) {

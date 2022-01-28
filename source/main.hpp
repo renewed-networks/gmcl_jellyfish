@@ -16,10 +16,6 @@
 #include <cstdlib>
 #include <string>
 #include <filesystem>
-#include <vector>
-#include <Wininet.h>
-#include <Windows.h>
-#pragma comment(lib, "wininet.lib")
 
 #define LUA_PUSHTYPEONCE(type, data) \
 LUA->Push##type(data); \
