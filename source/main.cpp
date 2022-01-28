@@ -9,13 +9,31 @@ LUA_FUNCTION_STATIC(version)
 
 LUA_FUNCTION_STATIC(exist)
 {
-	if (std::filesystem::exists( std::string("jellyfish") ))
+	LUA->CheckString(1);
+	const char* path = LUA->GetString(1);
+	std::string externalPath = std::string("jellyfish/") + path;
+	if (std::filesystem::exists( externalPath ))
 		LUA->PushNumber(1);
 	else
 		LUA->PushNumber(0);
 
 	return 1;
 }
+
+/*
+LUA_FUNCTION_STATIC(fs_read)
+{
+	LUA->CheckString(1);
+	const char* path = LUA->GetString(1);
+	std::string externalPath = std::string("jellyfish/") + path;
+	if (std::filesystem::exists( externalPath ))
+		LUA->PushNumber(1);
+	else
+		LUA->PushNumber(0);
+
+	return 1;
+}
+*/
 
 GMOD_MODULE_OPEN()
 {
