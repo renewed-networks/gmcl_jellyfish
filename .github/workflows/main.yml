@@ -2,7 +2,7 @@ name: Build
 on: [push, pull_request]
 env:
   MODULE_PREFIX: gmcl
-  MODULE_NAME: rnlib
+  MODULE_NAME: jellyfish
 
 jobs:
   linux32:
