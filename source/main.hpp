@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <string>
 #include <filesystem>
+#include <stdio.h>
 
 #define LUA_PUSHTYPEONCE(type, data) \
 LUA->Push##type(data); \
