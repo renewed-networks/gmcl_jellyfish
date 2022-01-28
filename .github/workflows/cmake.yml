@@ -1,6 +1,5 @@
 name: CMake Build
 on: [push, pull_request]
-
 env:
   MODULE_PREFIX: gmcl
   MODULE_NAME: jellyfish_rpc
@@ -13,11 +12,11 @@ jobs:
       matrix:
         config:
         - {
-          name: "Windows 32Bit", artifact: "${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_win32.dll",
+          name: "Windows 32Bit", artifact: "gmcl_jellyfish_rpc_win32.dll",
           cmakeargs: "-A Win32"
         }
         - {
-          name: "Windows 64Bit", artifact: "${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_win64.dll",
+          name: "Windows 64Bit", artifact: "gmcl_jellyfish_rpc_win64.dll",
           cmakeargs: "-A x64"
         }
 
@@ -39,7 +38,7 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: cmake --build . --target ${{env.MODULE_NAME}} --config MinSizeRel
+      run: cmake --build . --target jellyfish_rpc --config MinSizeRel
 
     - name: Upload
       uses: actions/upload-artifact@v2
