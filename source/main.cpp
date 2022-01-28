@@ -1,5 +1,4 @@
 #include "main.hpp"
-#include "external.hpp"
 GarrysMod::Lua::ILuaInterface* JellyFish::ILuaServer;
 
 LUA_FUNCTION_STATIC(version)
