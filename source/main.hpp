@@ -11,9 +11,6 @@
 #include <GarrysMod/Lua/LuaInterface.h>
 #include <GarrysMod/FunctionPointers.hpp>
 #include <GarrysMod/InterfacePointers.hpp>
-
-#include <detouring/hook.hpp>
-#include <player.h>
 #include <string>
 
 #define LUA_PUSHTYPEONCE(type, data) \
