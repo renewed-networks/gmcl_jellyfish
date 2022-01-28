@@ -5,48 +5,6 @@ env:
   MODULE_NAME: jellyfish
 
 jobs:
-  linux32:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      - name: Install x32 libs
-        run: sudo apt install gcc-multilib g++-multilib
-
-      - name: Make executable
-        run: |
-          chmod +x ./configure
-          chmod +x ./bin/premake5
-          chmod +x ./bin/premake5.exe
-
-      - name: Configure
-        run: ./configure
-          
-      - name: Build Release
-        run: |
-          cd projects/linux/gmake
-          make config=release_x86
-          
-      #- name: Build Debug
-      #  run: |
-      #    cd projects/linux/gmake
-      #    make config=debug_x86
-      
-      - name: Upload Release
-        uses: actions/upload-artifact@v2
-        with:
-          name: Release
-          path: projects/linux/gmake/x86/Release/${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_linux.dll
-      
-      #- name: Upload Debug
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Debug
-      #    path: projects/linux/gmake/x86/Debug/${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_linux.dll
-
   win32:
     runs-on: windows-latest
     
