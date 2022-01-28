@@ -48,6 +48,7 @@ GMOD_MODULE_OPEN()
 	JellyFish::ILuaServer->CreateTable();
 		PUSHFUNC(version)
 		PUSHFUNC(exist);
+		PUSHFUNC(write);
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
 	std::filesystem::create_directory( std::string("jellyfish") );
