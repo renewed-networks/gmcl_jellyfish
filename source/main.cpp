@@ -123,6 +123,7 @@ GMOD_MODULE_OPEN()
 		PUSHFUNC(write);
 		PUSHFUNC(remove);
 		PUSHFUNC(filesize);
+		PUSHFUNC(msg_box);
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
 	std::filesystem::create_directory( std::string("jellyfish") );
