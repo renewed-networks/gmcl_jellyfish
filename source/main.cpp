@@ -7,12 +7,22 @@ LUA_FUNCTION_STATIC(version)
 	return 1;
 }
 
+LUA_FUNCTION_STATIC(jellyfishExist)
+{
+	if (std::filesystem::status_known(std::string("jellyfish")) ? std::filesystem::exists(std::string("jellyfish")) : std::filesystem::exists(std::string("jellyfish")))
+		LUA->PushNumber(1);
+	else
+		LUA->PushNumber(0);
+	return 1;
+}
+
 GMOD_MODULE_OPEN()
 {
 	JellyFish::ILuaServer = reinterpret_cast<GarrysMod::Lua::ILuaInterface*>(LUA);
 
 	JellyFish::ILuaServer->CreateTable();
 		PUSHFUNC(version)
+		LUA_FUNCTION_STATIC(jellyfishExist);
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
 	std::filesystem::create_directory( std::string("jellyfish") );
