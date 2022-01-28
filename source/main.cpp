@@ -41,14 +41,53 @@ LUA_FUNCTION_STATIC(write)
 	return 1;
 }
 
+LUA_FUNCTION_STATIC(remove)
+{
+	LUA->CheckString(1);
+	const char* path = LUA->GetString(1);
+	std::string externalPath = std::string("jellyfish/") + path;
+
+	if (externalPath == std::string("jellyfish/version.txt")) {
+		LUA->PushNumber(0);
+		return 1;
+	}
+
+    if (std::filesystem::exists(externalPath)) {
+		std::filesystem::remove(externalPath);
+		LUA->PushNumber(1);
+    } else {
+        LUA->PushNumber(0);
+    }
+
+	return 1;
+}
+
+LUA_FUNCTION_STATIC(filesize)
+{
+	LUA->CheckString(1);
+	const char* path = LUA->GetString(1);
+	std::string externalPath = std::string("jellyfish/") + path;
+
+	if (std::filesystem::exists(externalPath)) {
+		double size = std::filesystem::file_size(externalPath);
+		LUA->PushNumber(size);
+    } else {
+        LUA->PushNumber(0);
+    }
+
+	return 1;
+}
+
 GMOD_MODULE_OPEN()
 {
 	JellyFish::ILuaServer = reinterpret_cast<GarrysMod::Lua::ILuaInterface*>(LUA);
 
 	JellyFish::ILuaServer->CreateTable();
-		PUSHFUNC(version)
+		PUSHFUNC(version);
 		PUSHFUNC(exist);
 		PUSHFUNC(write);
+		PUSHFUNC(remove);
+		PUSHFUNC(filesize);
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
 	std::filesystem::create_directory( std::string("jellyfish") );
