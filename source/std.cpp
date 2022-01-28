@@ -1,5 +1,8 @@
 #include <Windows.h>
+#include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 #include <Wininet.h>
 #pragma comment(lib, "wininet.lib")
