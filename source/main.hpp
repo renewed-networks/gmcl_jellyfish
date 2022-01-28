@@ -11,7 +11,6 @@
 #include <GarrysMod/Lua/LuaInterface.h>
 #include <GarrysMod/FunctionPointers.hpp>
 #include <GarrysMod/InterfacePointers.hpp>
-#include <std>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
