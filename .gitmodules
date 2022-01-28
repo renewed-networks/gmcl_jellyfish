@@ -5,3 +5,10 @@
 [submodule "third-party/discord-rpc"]
 	path = third-party/discord-rpc
 	url = https://github.com/discord/discord-rpc.git
+[submodule "cmake/cpp/discord-rpc"]
+	path = cmake/cpp/discord-rpc
+	url = https://github.com/discord/discord-rpc.git
+[submodule "cmake/cpp/gmod-module-base"]
+	path = cmake/cpp/gmod-module-base
+	url = https://github.com/Facepunch/gmod-module-base.git
+	branch = development
