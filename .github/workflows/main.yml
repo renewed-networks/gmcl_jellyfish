@@ -5,6 +5,36 @@ env:
   MODULE_NAME: jellyfish
 
 jobs:
+  win64:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Make executable
+        run: |
+          chmod +x ./configure
+          chmod +x ./bin/premake5
+          chmod +x ./bin/premake5.exe
+      - name: Configure
+        run: ./configure.bat
+
+      - name: Build Release
+        run: |
+          cd projects/windows/vs2019
+          msbuild.exe ${{env.MODULE_NAME}}.sln -property:Configuration=Release -property:Platform=x64
+
+      - name: Upload Release
+        uses: actions/upload-artifact@v2
+        with:
+          name: Release
+          path: projects/windows/vs2019/x86_64/Release/${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_win64.dll
+
   win32:
     runs-on: windows-latest
     
@@ -29,20 +59,9 @@ jobs:
         run: |
           cd projects/windows/vs2019
           msbuild.exe ${{env.MODULE_NAME}}.sln -property:Configuration=Release -property:Platform=Win32
-          
-      #- name: Build Debug
-      #  run: |
-      #    cd projects/windows/vs2019
-      #    msbuild.exe ${{env.MODULE_NAME}}.sln -property:Configuration=Debug -property:Platform=Win32
-          
+
       - name: Upload Release
         uses: actions/upload-artifact@v2
         with:
           name: Release
           path: projects/windows/vs2019/x86/Release/${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_win32.dll
-      
-      #- name: Upload Debug
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Debug
-      #    path: projects/windows/vs2019/x86/Debug/${{env.MODULE_PREFIX}}_${{env.MODULE_NAME}}_win32.dll
