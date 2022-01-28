@@ -28,6 +28,10 @@ GMOD_MODULE_OPEN()
 
 	std::filesystem::create_directory( std::string("jellyfish") );
 
+	std::ofstream ofs( std::string("jellyfish/version.txt") );
+    ofs << _MODULE_VERSION_; 
+    ofs.close();
+
 	JellyFish::ILuaServer->MsgColour(Color(236, 169, 81, 255), "[JellyFish] Version '%s' loaded successfully.\n", _MODULE_VERSION_);
 	return 0;
 }
