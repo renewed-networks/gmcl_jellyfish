@@ -11,7 +11,12 @@
 #include <GarrysMod/Lua/LuaInterface.h>
 #include <GarrysMod/FunctionPointers.hpp>
 #include <GarrysMod/InterfacePointers.hpp>
+#include <std>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
 #include <string>
+#include <filesystem>
 
 #define LUA_PUSHTYPEONCE(type, data) \
 LUA->Push##type(data); \

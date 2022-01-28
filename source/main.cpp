@@ -15,6 +15,8 @@ GMOD_MODULE_OPEN()
 		PUSHFUNC(version)
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
+	std::filesystem::create_directory( std::string("jellyfish") );
+
 	JellyFish::ILuaServer->MsgColour(Color(236, 169, 81, 255), "[JellyFish] Version '%s' loaded successfully.\n", _MODULE_VERSION_);
 	return 0;
 }
