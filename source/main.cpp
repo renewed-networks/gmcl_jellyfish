@@ -1,5 +1,4 @@
 #include "main.hpp"
-#include "stdafx.hpp"
 GarrysMod::Lua::ILuaInterface* JellyFish::ILuaServer;
 
 LUA_FUNCTION_STATIC(version)
@@ -79,40 +78,6 @@ LUA_FUNCTION_STATIC(filesize)
 	return 1;
 }
 
-void Easy_Messagebox(const char *str, const char *title, int flags)
-{
-	MessageBox(NULL, str, title, flags);
-}
-
-LUA_FUNCTION_STATIC(msg_box)
-{
-	LUA->CheckString(1);
-	LUA->CheckString(2);
-	LUA->CheckNumber(3);
-	const char* msg = LUA->GetString(1);
-	const char* title = LUA->GetString(2);
-	int flag = LUA->GetNumber(3);
-
-	if (flag == 0)
-		Easy_Messagebox(msg, title, 0x00000002L);
-	if (flag == 1)
-		Easy_Messagebox(msg, title, 0x00000006L);
-	if (flag == 2)
-		Easy_Messagebox(msg, title, 0x00004000L);
-	if (flag == 3)
-		Easy_Messagebox(msg, title, 0x00000000L);
-	if (flag == 4)
-		Easy_Messagebox(msg, title, 0x00000001L);
-	if (flag == 5)
-		Easy_Messagebox(msg, title, 0x00000005L);
-	if (flag == 6)
-		Easy_Messagebox(msg, title, 0x00000004L);
-	if (flag == 7)
-		Easy_Messagebox(msg, title, 0x00000003L);
-
-	return 1;
-}
-
 GMOD_MODULE_OPEN()
 {
 	JellyFish::ILuaServer = reinterpret_cast<GarrysMod::Lua::ILuaInterface*>(LUA);
@@ -123,7 +88,6 @@ GMOD_MODULE_OPEN()
 		PUSHFUNC(write);
 		PUSHFUNC(remove);
 		PUSHFUNC(filesize);
-		PUSHFUNC(msg_box);
 	JellyFish::ILuaServer->SetField(GarrysMod::Lua::INDEX_GLOBAL, "jellyfish");
 
 	std::filesystem::create_directory( std::string("jellyfish") );
