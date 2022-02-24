@@ -30,8 +30,8 @@ LUA_FUNCTION_STATIC(write)
 	std::string externalContent = content;
 
 	std::ofstream ofs( externalPath );
-    	ofs << externalContent;
-    ofs.close();
+    		ofs << externalContent;
+    	ofs.close();
 
 	if (std::filesystem::exists( externalPath ))
 		LUA->PushNumber(1);
@@ -52,12 +52,12 @@ LUA_FUNCTION_STATIC(remove)
 		return 1;
 	}
 
-    if (std::filesystem::exists(externalPath)) {
+    	if (std::filesystem::exists(externalPath)) {
 		std::filesystem::remove(externalPath);
 		LUA->PushNumber(1);
-    } else {
-        LUA->PushNumber(0);
-    }
+    	} else {
+		LUA->PushNumber(0);
+    	}
 
 	return 1;
 }
@@ -71,9 +71,9 @@ LUA_FUNCTION_STATIC(filesize)
 	if (std::filesystem::exists(externalPath)) {
 		double size = std::filesystem::file_size(externalPath);
 		LUA->PushNumber(size);
-    } else {
-        LUA->PushNumber(0);
-    }
+    	} else {
+        	LUA->PushNumber(0);
+    	}
 
 	return 1;
 }
@@ -93,8 +93,8 @@ GMOD_MODULE_OPEN()
 	std::filesystem::create_directory( std::string("jellyfish") );
 
 	std::ofstream ofs( std::string("jellyfish/version.txt") );
-    ofs << _MODULE_VERSION_; 
-    ofs.close();
+    		ofs << _MODULE_VERSION_; 
+    	ofs.close();
 
 	JellyFish::ILuaServer->MsgColour(Color(236, 169, 81, 255), "[JellyFish] Version '%s' loaded successfully.\n", _MODULE_VERSION_);
 	return 0;
