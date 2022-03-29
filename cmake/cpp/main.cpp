@@ -5,8 +5,6 @@
 #include <string.h>
 #include <utility>
 
-#define _MODULE_VERSION_ "1.0"
-
 DiscordUser cbConUser;
 std::pair<int, char> cbDisconnected;
 std::pair<int, char> cbError;
@@ -181,12 +179,6 @@ LUA_FUNCTION(UpdateDiscordStatus) {
     return 0;
 }
 
-LUA_FUNCTION_STATIC(jlRPCv)
-{
-	LUA->PushString(_MODULE_VERSION_);
-	return 1;
-}
-
 GMOD_MODULE_OPEN() {
     // Create the functions
     LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
@@ -207,11 +199,6 @@ GMOD_MODULE_OPEN() {
     LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
     LUA->PushCFunction(UpdateDiscordStatus);
     LUA->SetField(-2, "DiscordUpdateRPC");
-    LUA->Pop();
-
-    LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-    LUA->PushCFunction(jlRPCv);
-    LUA->SetField(-2, "jellyfishRPCVersion");
     LUA->Pop();
 
     return 0;

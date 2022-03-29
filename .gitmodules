@@ -12,6 +12,3 @@
 	path = cmake/cpp/gmod-module-base
 	url = https://github.com/Facepunch/gmod-module-base.git
 	branch = development
-[submodule "cmake/cpp/discord-rpc-buttons"]
-	path = cmake/cpp/discord-rpc-buttons
-	url = https://github.com/ariloc/discord-rpc-buttons
