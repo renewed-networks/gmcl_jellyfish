@@ -5,6 +5,8 @@
 #include <string.h>
 #include <utility>
 
+#define _MODULE_VERSION_ "1.0"
+
 DiscordUser cbConUser;
 std::pair<int, char> cbDisconnected;
 std::pair<int, char> cbError;
@@ -137,6 +139,12 @@ LUA_FUNCTION(DiscordRespond) {
     const int reply = LUA->GetNumber(2);
     Discord_Respond(userid, reply);
     return 0;
+}
+
+LUA_FUNCTION_STATIC(JellyFishRPCVersion)
+{
+	LUA->PushString(_MODULE_VERSION_);
+	return 1;
 }
 
 LUA_FUNCTION(UpdateDiscordStatus) {
